@@ -1,0 +1,13 @@
+spec:
+  containers:
+    - name: prometheus
+      image: prom/prometheus
+      args:
+        - '--config.file=/etc/prometheus/prometheus.yml'
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/prometheus
+  volumes:
+    - name: config-volume
+      configMap:
+        name: prometheus-config
